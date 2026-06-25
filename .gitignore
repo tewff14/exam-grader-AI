@@ -22,5 +22,10 @@ node_modules/
 # Build artifacts
 *.tsbuildinfo
 
+# Docs / markdown — keep only README.md
+*.md
+!README.md
+docs/
+
 # OS
 .DS_Store
