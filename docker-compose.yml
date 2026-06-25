@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "${BACKEND_PORT:-8002}:8002"
+    environment:
+      JAMAI_TOKEN: ${JAMAI_TOKEN}
+      JAMAI_PROJECT_ID: ${JAMAI_PROJECT_ID:-proj_9f386b9e35a4f019119bfc11}
+      JAMAI_API_BASE: ${JAMAI_API_BASE:-}
+      JAMAI_EXTRACTION_TABLE_ID: ${JAMAI_EXTRACTION_TABLE_ID:-Question_extraction}
+      JAMAI_SCORING_TABLE_ID: ${JAMAI_SCORING_TABLE_ID:-Subjective_test_scoring}
+      JAMAI_GENERATION_TABLE_ID: ${JAMAI_GENERATION_TABLE_ID:-Exam_generation}
+    volumes:
+      - ./backend/data:/app/backend/data
+      - ./backend/uploads:/app/backend/uploads
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8002}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+
+# Secrets — never commit real tokens. `.env` is loaded by docker compose and
+# holds the real JAMAI_TOKEN; only `.env.example` (placeholders) is tracked.
+.env
+.env.*
+!.env.example
+backend/.env
+
+# Backend runtime data — the SQLite DB and uploaded papers
+# (backend/data/ and backend/uploads/ are created automatically by settings.py)
+backend/data/*
+backend/uploads/*
+*.db
+
+# Node / Next.js
+node_modules/
+.next/
+
+# Build artifacts
+*.tsbuildinfo
+
+# OS
+.DS_Store

@@ -1,0 +1,10 @@
+# Used for the backend image build (context = project root).
+frontend/
+**/__pycache__/
+*.pyc
+backend/.env
+backend/data/
+backend/uploads/*
+.git/
+.gitignore
+*.md
